@@ -1,13 +1,18 @@
 package greetgo
 
 import (
+	"errors"
 	"fmt"
 )
 
 // Hello returns a greeting for the named person.
-func Hello(name string) string {
+func Hello(name string) (string, error) {
+	if name == "" {
+		return "", errors.New("empty name")
+	}
+
 	// Return a greeting that embeds the name in a messager
 	message := fmt.Sprintf("Hi, %v. Welcome!", name)
-	return message
+	return message, nil
 }
 
